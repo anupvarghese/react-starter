@@ -6,7 +6,7 @@ export default {
   output: {
     path: path.resolve(__dirname, './dist'), // eslint-disable-line no-undef
     publicPath: 'http://localhost:3000/',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
   module: {
     rules: [
@@ -25,4 +25,16 @@ export default {
     inline: true,
   },
   plugins: [new webpack.HotModuleReplacementPlugin()],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+  mode: 'development',
 };
