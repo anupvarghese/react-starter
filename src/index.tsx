@@ -1,27 +1,29 @@
+import { css } from 'glamor';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
-import { css } from 'glamor';
 
 const wrapper = css({
   display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gridGap: '10px',
-  fontSize: '40px',
   fontFamily: 'Lato, sans-serif',
+  fontSize: '40px',
   gridAutoRows: '390px',
+  gridGap: '10px',
   gridTemplateAreas: `". a a ."
   ". a a ."`,
+  gridTemplateColumns: 'repeat(4, 1fr)',
 });
 
 const item = css({
-  gridArea: 'a',
   alignSelf: 'center',
+  gridArea: 'a',
   justifySelf: 'center',
 });
 
-class Hello extends React.Component {
-  render() {
+interface Props {
+  name: string;
+}
+class Hello extends React.Component<Props, {}> {
+  public render() {
     return (
       <div {...wrapper}>
         <div {...item}>Hello {this.props.name}</div>
@@ -29,9 +31,5 @@ class Hello extends React.Component {
     );
   }
 }
-
-Hello.propTypes = {
-  name: PropTypes.string.isRequired,
-};
 
 ReactDOM.render(<Hello name="John" />, document.getElementById('app'));
