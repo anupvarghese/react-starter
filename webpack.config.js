@@ -1,8 +1,8 @@
-import webpack from 'webpack';
-import path from 'path';
+const webpack = require('webpack');
+const path = require('path');
 
-export default {
-  entry: ['./src/index.js'],
+module.exports = {
+  entry: ['./src/index.tsx'],
   output: {
     path: path.resolve(__dirname, './dist'), // eslint-disable-line no-undef
     publicPath: 'http://localhost:3000/',
@@ -11,7 +11,7 @@ export default {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(tsx?)|(js)$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
